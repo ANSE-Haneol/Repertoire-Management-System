@@ -3,56 +3,82 @@ package ClassProject;
 import java.util.*;
 
 public class RepertoireManager {
-	public static void main(String[] args) {
+	private ArrayList<RepStatus> repList = new ArrayList<RepStatus>(); //RepStatus 타입을 저장하는 ArrayList를 생성
+	
+	private Scanner in = new Scanner(System.in);
+	
+	RepertoireManager() {
 		
-		Scanner in = new Scanner(System.in);
+	}
+	
+	public void addRep() //레퍼토리를 추가한다
+	{	
+		RepStatus rs = new RepStatus(); //우선 객체 rs를 인스턴스화 해주고
 		
-		RepInfo ri = new RepInfo();
+		System.out.print("Enter the composer: "); //값들을 입력받고
+		rs.setComposer(in.nextLine()); //rs의 setter 메소드들에 접근하여 객체 내의 값을 바꿔준다
+		System.out.print("Enter the title: ");
+		rs.setTitle(in.nextLine());
+		System.out.print("Enter the genre: ");
+		rs.setGenre(in.nextLine());
+		System.out.print("Enter current performability: ");
+		rs.setPeformability(in.nextLine());
+		System.out.print("Have you ever performed it? ");
+		rs.setPerformed(in.nextLine());
 		
-		int num = 0;
+		repList.add(rs); //그 객체를 repList에 추가한다.
 		
-		while(num != 6) {
-			System.out.println("1. Add Repertoire");
-			System.out.println("2. Delete Repertoire");
-			System.out.println("3. Edit Repertoire");
-			System.out.println("4. View Repertoire");
-			System.out.println("5. Show menu");
-			System.out.println("6. Exit");
-			
-			System.out.print("Enter a command number: ");
-			num = in.nextInt();
-			in.nextLine(); //int를 받고 나서 개행문자('\n')이 남아 있어 다음 string을 받는 데 스킵이 되는 것을 방지
-			
-			if(num == 1) { //1을 입력하면
-				ri.addRep(); //레퍼토리를 추가
-			}
-			else if(num == 2) { //2를 입력했는데
-				if(ri.getRepList().size() <= 0) { //count가 0보다 크지 않으면
-					System.out.println("There's nothing to delete."); //지울 것이 없음
-					System.out.println();
-				}
-				else { //아니면
-					ri.delRep(); //레퍼토리를 삭제
-				}
-			}
-			else if(num == 3) { //3을 입력했는데
-				if(ri.getRepList().size() <= 0) { //count가 0보다 크지 않으면
-					System.out.println("There's nothing to edit."); //수정할 것이 없음
-					System.out.println();
-				}
-				else { //아니면
-					ri.editRep(); //레퍼토리를 수정
-				}
-			}
-			else if(num == 4) { //4를 입력했는데
-				if(ri.getRepList().size() <= 0) { //count가 0보다 크지 않으면
-					System.out.println("The list is empty"); //리스트는 비어있음
-					System.out.println();
-				}
-				else { //아니면
-					ri.viewRep(); //레퍼토리 목록을 출력
-				}
-			}
+		System.out.println();
+	}
+	
+	public void delRep() //레퍼토리를 삭제한다
+	{	
+		System.out.print("Which index do you want to delete?: ");
+		int delIdx = in.nextInt(); //지우고 싶은 인덱스를 입력받은 후
+		in.nextLine();
+		
+		repList.remove(delIdx); //ArrayList에서 해당 인덱스의 객체를 지운다
+		System.out.println();
+	}
+	
+	public void editRep() //레퍼토리를 수정한다
+	{	
+		RepStatus rs = new RepStatus(); //우선 객체 rs를 인스턴스화 해주고
+		
+		System.out.print("Which index do you want to edit?: ");
+		int edIdx = in.nextInt(); //수정하고 싶은 인덱스를 입력한다
+		repList.remove(edIdx);
+		in.nextLine();
+		
+		System.out.print("Rename the composer: "); //다시 값들을 받아
+		rs.setComposer(in.nextLine());
+		System.out.print("Rename the title: ");
+		rs.setTitle(in.nextLine());
+		System.out.print("Re-enter the genre: ");
+		rs.setGenre(in.nextLine());
+		System.out.print("Re-enter current performability: ");
+		rs.setPeformability(in.nextLine());
+		System.out.print("Have you ever performed it? ");
+		rs.setPerformed(in.nextLine());
+		
+		repList.add(edIdx, rs); //수정하고 싶은 인덱스에 삽입한다.
+		System.out.println();
+	} //이 과정은 해당 인덱스의 객체를 수정하는 것과 동일한 효과를 가진다
+	
+	public void viewRep() //레퍼토리 목록을 출력
+	{	
+		for(int i = 0; i < repList.size(); i++) { //ArrayList의 크기만큼 반복한다
+			System.out.println("Composer: " + repList.get(i).getComposer()); //getter 메소드에 접근하여 값을 출력
+			System.out.println("Title: " + repList.get(i).getTitle());
+			System.out.println("Genre: " + repList.get(i).getGenre());
+			System.out.println("Performability: " + repList.get(i).getPerformability());
+			System.out.println("Performed: " + repList.get(i).getPerformed());
+			System.out.println();
 		}
+	}
+	
+	public ArrayList getRepList()
+	{
+		return this.repList;
 	}
 }

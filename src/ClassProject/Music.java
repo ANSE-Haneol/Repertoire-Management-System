@@ -1,13 +1,10 @@
 package ClassProject;
 
-import java.util.*;
-
-public class Music {
+public abstract class Music {
 	
 	protected String composer = null;
 	protected String title = null;
 	protected String genre = null;
-	protected String era = null;
 	
 	Music() {
 		
@@ -34,11 +31,6 @@ public class Music {
 		this.genre = genre;
 	}
 	
-	public void setEra()
-	{
-		//intentional blank, for overriding
-	}
-	
 	public String getComposer() //변수의 값을 불러올 getter 메소드들
 	{
 		return this.composer;
@@ -54,8 +46,11 @@ public class Music {
 		return this.genre;
 	}
 	
-	public String getEra()
+	public void printMusic()
 	{
-		return this.era;
+		System.out.println("Composer: " + getComposer());
+		System.out.println("Title: " + getTitle());
+		System.out.println("Genre: " + getGenre());
+		System.out.println();
 	}
 }

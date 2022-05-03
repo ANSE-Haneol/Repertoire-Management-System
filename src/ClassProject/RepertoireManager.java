@@ -134,27 +134,15 @@ public class RepertoireManager {
 	public void viewRep() //레퍼토리 목록을 출력
 	{	
 		for(int i = 0; i < brList.size(); i++) { //ArrayList의 크기만큼 반복한다
-			System.out.println("Composer: " + brList.get(i).getComposer()); //getter 메소드에 접근하여 값을 출력
-			System.out.println("Title: " + brList.get(i).getTitle());
-			System.out.println("Genre: " + brList.get(i).getGenre());
-			System.out.println("Era: " + brList.get(i).getEra());
-			System.out.println();
+			brList.get(i).printMusic();
 		}
 		
-		for(int i = 0; i < crList.size(); i++) { //ArrayList의 크기만큼 반복한다
-			System.out.println("Composer: " + crList.get(i).getComposer()); //getter 메소드에 접근하여 값을 출력
-			System.out.println("Title: " + crList.get(i).getTitle());
-			System.out.println("Genre: " + crList.get(i).getGenre());
-			System.out.println("Era: " + crList.get(i).getEra());
-			System.out.println();
+		for(int i = 0; i < crList.size(); i++) {
+			crList.get(i).printMusic();
 		}
 		
-		for(int i = 0; i < rrList.size(); i++) { //ArrayList의 크기만큼 반복한다
-			System.out.println("Composer: " + rrList.get(i).getComposer()); //getter 메소드에 접근하여 값을 출력
-			System.out.println("Title: " + rrList.get(i).getTitle());
-			System.out.println("Genre: " + rrList.get(i).getGenre());
-			System.out.println("Era: " + rrList.get(i).getEra());
-			System.out.println();
+		for(int i = 0; i < rrList.size(); i++) {
+			rrList.get(i).printMusic();
 		}
 	}
 	

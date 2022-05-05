@@ -1,16 +1,20 @@
 package ClassProject;
 
+import java.util.*;
+
 public abstract class Music {
 	
-	protected String composer = null;
-	protected String title = null;
-	protected String genre = null;
+	private String composer;
+	private String title;
+	private String genre;
+	private int order;
+	protected Scanner in = new Scanner(System.in);
 	
 	Music() {
 		
 	}
 	
-	Music(String composer, String title, String genre) {
+	Music(String composer, String title, String genre, int priority) {
 		this.composer = composer;
 		this.title = title;
 		this.genre = genre;
@@ -46,11 +50,7 @@ public abstract class Music {
 		return this.genre;
 	}
 	
-	public void printMusic()
-	{
-		System.out.println("Composer: " + getComposer());
-		System.out.println("Title: " + getTitle());
-		System.out.println("Genre: " + getGenre());
-		System.out.println();
-	}
+	public abstract int getOrder();
+	public abstract Music createRep(Music m);
+	public abstract void printMusic();
 }

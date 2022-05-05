@@ -4,10 +4,9 @@ import java.util.*;
 
 public class ManagerMain {
 	public static void main(String[] args) {
+		ArrayList<Music> musicList = new ArrayList<>();
 		
 		Scanner in = new Scanner(System.in);
-		
-		RepertoireManager rm = new RepertoireManager();
 		
 		int num = 0;
 		
@@ -30,91 +29,101 @@ public class ManagerMain {
 				System.out.print("What's the era of your repertoire?: ");
 				int era = in.nextInt();
 				
-				if(era == 1) { //레퍼토리를 추가
-					BaroqueRepertoire br = new BaroqueRepertoire();
-					br.setEra();
-					rm.addRep(br); 
+				Music m;
+				if(era == 1) {
+					m = new BaroqueRepertoire();
 				}
 				else if(era == 2) {
-					ClassicalRepertoire cr = new ClassicalRepertoire();
-					cr.setEra();
-					rm.addRep(cr);
+					m = new ClassicalRepertoire();
 				}
 				else if(era == 3) {
-					RomanticRepertoire rr = new RomanticRepertoire();
-					rr.setEra();
-					rm.addRep(rr);
+					m = new RomanticRepertoire();
 				}
 				else {
 					System.out.println("Invalid code.");
 					System.out.println();
+					continue;
 				}
+				
+				musicList.add(m.createRep(m));
+				musicList.sort(new EraComparator());
 			}
 			else if(num == 2) { //2를 입력했는데
-				System.out.println("1. Baroque");
-				System.out.println("2. Classical");
-				System.out.println("3. Romantic");
-				System.out.print("Which era of the repertoire do you want to delete?: ");
-				int era = in.nextInt();
-				
-				int size = rm.getRepList(era).size();
+				int size = musicList.size();
 				if(size <= 0) { //count가 0보다 크지 않으면
 					System.out.println("There's nothing to delete."); //지울 것이 없음
 					System.out.println();
 				}
-				else { //아니면
-					rm.delRep(era); //레퍼토리를 삭제
+				else { //아니면	
+					System.out.print("Which index do you want to delete?: ");
+					int delIdx = in.nextInt();
+					in.nextLine();
+					
+					musicList.remove(delIdx); 
+					System.out.println();
 				}
 			}
-			else if(num == 3) { //3을 입력했는데
-				System.out.println("1. Baroque");
-				System.out.println("2. Classical");
-				System.out.println("3. Romantic");
-				System.out.print("Which era of the repertoire do you want to delete?: ");
-				int era = in.nextInt();
-				
-				int size = rm.getRepList(era).size();
-				if(size <= 0) { //count가 0보다 크지 않으면
+			else if(num == 3) { //3을 입력했는데				
+				if(musicList.size() <= 0) { //count가 0보다 크지 않으면
 					System.out.println("There's nothing to edit."); //수정할 것이 없음
 					System.out.println();
 				}
 				else { //아니면
+					System.out.println("1. Baroque");
+					System.out.println("2. Classical");
+					System.out.println("3. Romantic");
+					System.out.print("What's the era of your repertoire?: ");
+					int era = in.nextInt();
+					
+					Music m;
 					if(era == 1) {
-						BaroqueRepertoire br = new BaroqueRepertoire();
-						br.setEra();
-						rm.editRep(br);
+						m = new BaroqueRepertoire();
 					}
 					else if(era == 2) {
-						ClassicalRepertoire cr = new ClassicalRepertoire();
-						cr.setEra();
-						rm.editRep(cr);
+						m = new ClassicalRepertoire();
 					}
 					else if(era == 3) {
-						RomanticRepertoire rr = new RomanticRepertoire();
-						rr.setEra();
-						rm.editRep(rr);
+						m = new RomanticRepertoire();
 					}
 					else {
-						System.out.println("Invalid Code.");
+						System.out.println("Invalid code.");
 						System.out.println();
+						continue;
 					}
+					
+					System.out.print("Which index do you want to delete?: ");
+					int delIdx = in.nextInt();
+					in.nextLine();
+					musicList.remove(delIdx);
+					musicList.add(delIdx, m.createRep(m));
+					
+					System.out.println();
 				}
 			}
 			else if(num == 4) { //4를 입력했는데
-				int max = 0;
-				for(int i = 1; i <= 3; i++) {
-					if(max < rm.getRepList(i).size()) {
-						max = rm.getRepList(i).size();
-					}
-				}
-				if(max <= 0) { //제일 큰 리스트의 사이즈가 0보다 크지 않으면
-					System.out.println("The list is empty"); //리스트는 비어있음
+				if(musicList.size() <= 0) {
+					System.out.println("There's nothing to show.");
 					System.out.println();
 				}
 				else { //아니면
-					rm.viewRep(); //레퍼토리 목록을 출력
+					for(int i = 0; i < musicList.size(); i++) {
+						musicList.get(i).printMusic();
+					}
 				}
 			}
 		}
+	}
+}
+
+class EraComparator implements Comparator<Music> {
+	public int compare(Music m1, Music m2) {
+		if(m1.getOrder() < m2.getOrder()) {
+			return -1;
+		}
+		else if(m1.getOrder() > m2.getOrder()){
+			return 1;
+		}
+		
+		return 0;
 	}
 }

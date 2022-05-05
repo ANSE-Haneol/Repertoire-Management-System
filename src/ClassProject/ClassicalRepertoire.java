@@ -1,10 +1,15 @@
 package ClassProject;
 
-public class ClassicalRepertoire extends Music {
+public class ClassicalRepertoire extends Music implements Era {
 	private String era;
+	private int order = 2;
 	
 	ClassicalRepertoire() {
-		
+		this.era = "Classical";
+	}
+	
+	ClassicalRepertoire(String era) {
+		this.era = era;
 	}
 	
 	public void setEra()
@@ -20,6 +25,25 @@ public class ClassicalRepertoire extends Music {
 	public String getEra()
 	{
 		return this.era;
+	}
+	
+	public int getOrder()
+	{
+		return this.order;
+	}
+	
+	public Music createRep(Music m) //레퍼토리를 추가한다
+	{			
+     	System.out.print("Enter the composer: "); //값들을 입력받고
+		m.setComposer(in.nextLine()); 
+		System.out.print("Enter the title: ");
+		m.setTitle(in.nextLine());
+		System.out.print("Enter the genre: ");
+		m.setGenre(in.nextLine());
+		
+		System.out.println();
+		
+		return m;
 	}
 	
 	public void printMusic()

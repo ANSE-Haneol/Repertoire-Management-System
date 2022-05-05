@@ -14,10 +14,11 @@ public abstract class Music {
 		
 	}
 	
-	Music(String composer, String title, String genre, int priority) {
+	Music(String composer, String title, String genre, int order) {
 		this.composer = composer;
 		this.title = title;
 		this.genre = genre;
+		this.order = order;
 	}
 	
 	public void setComposer(String composer) //각 변수에 값을 할당해 줄 메소드들

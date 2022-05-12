@@ -12,11 +12,6 @@ public class ClassicalRepertoire extends Music implements Era {
 		this.era = era;
 	}
 	
-	public void setEra()
-	{
-		this.era = "Classical";
-	}
-	
 	public void setEra(String era)
 	{
 		this.era = era;

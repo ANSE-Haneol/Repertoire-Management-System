@@ -1,10 +1,12 @@
 package ClassProject;
 
-import java.util.*;
+import java.util.*;			
 
 public class ManagerMain {
 	public static void main(String[] args) {
 		ArrayList<Music> musicList = new ArrayList<>();
+		
+		EraComparator eraComp = new EraComparator();
 		
 		Scanner in = new Scanner(System.in);
 		
@@ -17,9 +19,13 @@ public class ManagerMain {
 			System.out.println("4. View Repertoire");
 			System.out.println("5. Show menu");
 			System.out.println("6. Exit");
-			
 			System.out.print("Enter a command number: ");
-			num = in.nextInt();
+			try {
+				num = in.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("Please type a number.");
+				System.out.println();
+			}
 			in.nextLine();
 			
 			if(num == 1) { //1을 입력하면
@@ -27,7 +33,16 @@ public class ManagerMain {
 				System.out.println("2. Classical");
 				System.out.println("3. Romantic");
 				System.out.print("What's the era of your repertoire?: ");
-				int era = in.nextInt();
+				int era = 0;
+				try {
+					era = in.nextInt();
+				} catch (InputMismatchException e) {
+					System.out.println("Please type a number.");
+					System.out.println();
+					in.nextLine();
+					continue;
+				}
+				in.nextLine();
 				
 				Music m;
 				if(era == 1) {
@@ -46,7 +61,7 @@ public class ManagerMain {
 				}
 				
 				musicList.add(m.createRep(m));
-				musicList.sort(new EraComparator());
+				musicList.sort(eraComp);
 			}
 			else if(num == 2) { //2를 입력했는데
 				int size = musicList.size();
@@ -56,7 +71,15 @@ public class ManagerMain {
 				}
 				else { //아니면	
 					System.out.print("Which index do you want to delete?: ");
-					int delIdx = in.nextInt();
+					int delIdx = 0;
+					try {
+						delIdx = in.nextInt();
+					} catch (InputMismatchException e) {
+						System.out.println("Please enter an index number.");
+						System.out.println();
+						in.nextLine();
+						continue;
+					}
 					in.nextLine();
 					
 					musicList.remove(delIdx); 
@@ -73,7 +96,16 @@ public class ManagerMain {
 					System.out.println("2. Classical");
 					System.out.println("3. Romantic");
 					System.out.print("What's the era of your repertoire?: ");
-					int era = in.nextInt();
+					int era = 0;
+					try {
+						era = in.nextInt();
+					} catch (InputMismatchException e) {
+						System.out.println("Please type a number.");
+						System.out.println();
+						in.nextLine();
+						continue;
+					}
+					in.nextLine();
 					
 					Music m;
 					if(era == 1) {
@@ -92,10 +124,16 @@ public class ManagerMain {
 					}
 					
 					System.out.print("Which index do you want to delete?: ");
-					int delIdx = in.nextInt();
+					int delIdx = 0;
+					try {
+						delIdx = in.nextInt();
+					} catch (InputMismatchException e) {
+						System.out.println("Please enter an index number.");
+						System.out.println();
+						in.nextLine();
+						continue;
+					}
 					in.nextLine();
-					musicList.remove(delIdx);
-					musicList.add(delIdx, m.createRep(m));
 					
 					System.out.println();
 				}

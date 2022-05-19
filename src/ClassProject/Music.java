@@ -1,6 +1,8 @@
 package ClassProject;
 
 import java.util.*;
+import java.text.SimpleDateFormat;
+import java.io.*;
 
 public abstract class Music {
 	
@@ -52,6 +54,6 @@ public abstract class Music {
 	}
 	
 	public abstract int getOrder();
-	public abstract Music createRep(Music m);
+	public abstract Music createRep(Music m, SimpleDateFormat format, PrintWriter file);
 	public abstract void printMusic();
 }

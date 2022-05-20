@@ -1,10 +1,10 @@
 package ClassProject;
 
-import java.io.PrintWriter;
+import java.util.*;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.*;
 
-public class ClassicalRepertoire extends Music implements Era {
+public class ClassicalRepertoire extends Music implements Era, Serializable {
 	private String era;
 	private int order = 2;
 	
@@ -34,6 +34,7 @@ public class ClassicalRepertoire extends Music implements Era {
 	public Music createRep(Music m, SimpleDateFormat format, PrintWriter file) //레퍼토리를 추가한다
 	{	
 		Date date = new Date();
+		Scanner in = new Scanner(System.in);
 		
      	System.out.print("Enter the composer: "); //값들을 입력받고
 		m.setComposer(in.nextLine());

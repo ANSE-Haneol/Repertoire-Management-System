@@ -4,13 +4,12 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 import java.io.*;
 
-public abstract class Music {
+public abstract class Music implements Serializable {
 	
 	private String composer;
 	private String title;
 	private String genre;
 	private int order;
-	protected Scanner in = new Scanner(System.in);
 	
 	Music() {
 		

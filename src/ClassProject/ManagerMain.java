@@ -5,8 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;			
 
 public class ManagerMain {
-	public static void main(String[] args) {
-		try {
+	
+	public static void main(String[] args) throws IOException {		
 			ArrayList<Music> musicList = new ArrayList<>();
 			Mcomparator mComp = new Mcomparator();
 			Scanner in = new Scanner(System.in);
@@ -14,6 +14,11 @@ public class ManagerMain {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			PrintWriter file = new PrintWriter(new FileWriter("RMSlog.txt", true));
 			Date dateStart = new Date();
+			
+			String filename = "ex.ser";
+			FileOutputStream fos = new FileOutputStream(filename);
+			ObjectOutputStream out = new ObjectOutputStream(fos);
+			
 			file.print(format.format(dateStart) + "\t");
 			file.println("Process started.");
 			
@@ -43,9 +48,6 @@ public class ManagerMain {
 					try {
 						era = in.nextInt();
 					} catch (InputMismatchException e) {
-						Date dateIME = new Date();
-						file.print(format.format(dateIME) + "\t");
-						file.println("An exception has been occured.");
 						System.out.println("Please type a number.");
 						System.out.println();
 						in.nextLine();
@@ -64,23 +66,19 @@ public class ManagerMain {
 						m = new RomanticRepertoire();
 					}
 					else {
-						Date dateInv = new Date();
-						file.print(format.format(dateInv) + "\t");
-						file.println("An invalid code has been entered.");
 						System.out.println("Invalid code.");
 						System.out.println();
 						continue;
 					}
 					
-					musicList.add(m.createRep(m, format, file));
+					m = m.createRep(m, format, file);
+					musicList.add(m);
+					out.writeObject(m);
 					musicList.sort(mComp);
 				}
 				else if(num == 2) { //2를 입력했는데
 					int size = musicList.size();
 					if(size <= 0) { //count가 0보다 크지 않으면
-						Date dateDelFailed1 = new Date();
-						file.print(format.format(dateDelFailed1) + "\t");
-						file.println("Deletion failure.");
 						System.out.println("There's nothing to delete."); //지울 것이 없음
 						System.out.println();
 					}
@@ -90,17 +88,11 @@ public class ManagerMain {
 						try {
 							delIdx = in.nextInt();
 						} catch (InputMismatchException e) {
-							Date dateDelFailed2 = new Date();
-							file.print(format.format(dateDelFailed2) + "\t");
-							file.println("Deletion failure.");
 							System.out.println("Please enter an index number.");
 							System.out.println();
 							in.nextLine();
 							continue;
 						} catch (IndexOutOfBoundsException e) {
-							Date dateDelFailed3 = new Date();
-							file.print(format.format(dateDelFailed3) + "\t");
-							file.println("Deletion failure.");
 							System.out.println("No information in that index.");
 							System.out.println();
 							in.nextLine();
@@ -115,11 +107,8 @@ public class ManagerMain {
 						System.out.println();
 					}
 				}
-				else if(num == 3) { //4를 입력했는데
+				else if(num == 3) { //3을 입력했는데
 					if(musicList.size() <= 0) {
-						Date datePrintFailed = new Date();
-						file.print(format.format(datePrintFailed) + "\t");
-						file.println("Data print failure.");
 						System.out.println("There's nothing to show.");
 						System.out.println();
 					}
@@ -135,12 +124,11 @@ public class ManagerMain {
 					Date dateEnd = new Date();
 					file.print(format.format(dateEnd) + "\t");
 					file.println("Process finished.");
+					out.close();
 					file.close();
 				}
 			}
-		} catch (IOException e) {
-			//intentional blank
-		}
+		 
 	}
 }
 

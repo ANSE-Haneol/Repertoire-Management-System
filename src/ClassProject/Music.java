@@ -6,6 +6,7 @@ import java.io.*;
 
 public abstract class Music implements Serializable {
 	
+	private static final long serialVersionUID = -5879039979649994252L;
 	private String composer;
 	private String title;
 	private String genre;
@@ -52,7 +53,16 @@ public abstract class Music implements Serializable {
 		return this.genre;
 	}
 	
+	public void setInfo(Scanner in)
+	{
+		System.out.print("Enter the composer: "); //값들을 입력받고
+		setComposer(in.nextLine());
+		System.out.print("Enter the title: ");
+		setTitle(in.nextLine());
+		System.out.print("Enter the genre: ");
+		setGenre(in.nextLine());
+	}
+	
 	public abstract int getOrder();
-	public abstract Music createRep(Music m, SimpleDateFormat format, PrintWriter file);
 	public abstract void printMusic();
 }

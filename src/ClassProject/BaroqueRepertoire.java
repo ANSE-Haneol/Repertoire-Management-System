@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.io.*;
 
 public class BaroqueRepertoire extends Music implements Era, Serializable {
+	private static final long serialVersionUID = 2376020475136386207L;
 	private String era;
 	private int order = 1;
 	
@@ -34,26 +35,6 @@ public class BaroqueRepertoire extends Music implements Era, Serializable {
 	public int getOrder()
 	{
 		return this.order;
-	}
-	
-	public Music createRep(Music m, SimpleDateFormat format, PrintWriter file) //레퍼토리를 추가한다
-	{	
-		Date date = new Date();
-		Scanner in = new Scanner(System.in);
-		
-     	System.out.print("Enter the composer: "); //값들을 입력받고
-		m.setComposer(in.nextLine());
-		System.out.print("Enter the title: ");
-		m.setTitle(in.nextLine());
-		System.out.print("Enter the genre: ");
-		m.setGenre(in.nextLine());
-		
-		file.print(format.format(date) + "\t");
-		file.print("Added a Baroque rep: " + m.getTitle() + " by " + m.getComposer() + "\n");
-		
-		System.out.println();
-		
-		return m;
 	}
 
 	public void printMusic()

@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.io.*;
 
 public class RomanticRepertoire extends Music implements Era, Serializable {
+	private static final long serialVersionUID = 690466906846436816L;
 	private String era;
 	private int order = 3;
 	

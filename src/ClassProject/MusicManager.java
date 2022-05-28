@@ -3,6 +3,11 @@ package ClassProject;
 import java.io.*;
 import java.util.*;
 
+import classes.BaroqueRepertoire;
+import classes.ClassicalRepertoire;
+import classes.Music;
+import classes.RomanticRepertoire;
+
 
 public class MusicManager implements Serializable {
 	

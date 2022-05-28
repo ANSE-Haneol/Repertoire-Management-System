@@ -1,6 +1,9 @@
-package ClassProject;
+package classes;
 
 import java.util.*;
+
+import ClassProject.Era;
+
 import java.text.SimpleDateFormat;
 import java.io.*;
 
@@ -9,7 +12,7 @@ public class BaroqueRepertoire extends Music implements Era, Serializable {
 	private String era;
 	private int order = 1;
 	
-	BaroqueRepertoire() {
+	public BaroqueRepertoire() {
 		this.era = "Baroque";
 	}
 	

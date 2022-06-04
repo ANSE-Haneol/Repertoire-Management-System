@@ -1,7 +1,9 @@
 package ClassProject;
 
 import java.io.*;
-import java.util.*;			
+import java.util.*;
+
+import gui.WindowFrame;			
 
 public class ManagerMain {
 	static EventLogger logger = new EventLogger("Syslog.txt");
@@ -13,6 +15,7 @@ public class ManagerMain {
 			musicManager = new MusicManager(in);
 		}
 		
+		WindowFrame frame = new WindowFrame(musicManager);
 		selectMenu(in, musicManager);
 		putObject(musicManager, "MusicManager.ser");
 	}

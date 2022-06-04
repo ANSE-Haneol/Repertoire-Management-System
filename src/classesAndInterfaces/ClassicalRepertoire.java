@@ -1,22 +1,19 @@
-package classes;
+package classesAndInterfaces;
 
 import java.util.*;
-
-import ClassProject.Era;
-
 import java.text.SimpleDateFormat;
 import java.io.*;
 
-public class RomanticRepertoire extends Music implements Era, Serializable {
-	private static final long serialVersionUID = 690466906846436816L;
+public class ClassicalRepertoire extends Music implements Era, Serializable {
+	private static final long serialVersionUID = 4256671604528330561L;
 	private String era;
-	private int order = 3;
+	private int order = 2;
 	
-	public RomanticRepertoire() {
-		this.era = "Romantic";
+	public ClassicalRepertoire() {
+		this.era = "Classical";
 	}
 	
-	RomanticRepertoire(String era) {
+	ClassicalRepertoire(String era) {
 		this.era = era;
 	}
 	
@@ -48,7 +45,7 @@ public class RomanticRepertoire extends Music implements Era, Serializable {
 		m.setGenre(in.nextLine());
 		
 		file.print(format.format(date) + "\t");
-		file.print("Added a Romantic rep: " + m.getTitle() + " by " + m.getComposer() + "\n");
+		file.print("Added a Classical rep: " + m.getTitle() + " by " + m.getComposer() + "\n");
 		
 		System.out.println();
 		

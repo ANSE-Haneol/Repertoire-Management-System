@@ -2,9 +2,12 @@ package gui;
 	
 import javax.swing.*;
 
-public class RepertoireAdder extends JFrame {
+public class RepertoireAdder extends JPanel {
 	
-	public RepertoireAdder() {
+	WindowFrame frame;
+	
+	public RepertoireAdder(WindowFrame frame) {
+		this.frame = frame;
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		
@@ -32,8 +35,7 @@ public class RepertoireAdder extends JFrame {
 		SpringUtilities.makeCompactGrid(panel, 4, 2, 6, 6, 6, 6);
 		
 		this.setSize(300, 300);
-		this.setContentPane(panel);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.add(panel);
 		this.setVisible(true);
 	}
 }

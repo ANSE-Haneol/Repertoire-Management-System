@@ -17,10 +17,12 @@ public class WindowFrame extends JFrame {
 	public WindowFrame(MusicManager musicManager) {
 		this.musicManager = musicManager;
 		this.menuSelection = new MenuSelection(this);
+		
 		this.eraSelector = new EraSelector(this, this.musicManager);
 		this.baroqueAdder = new BaroqueAdder(this, this.musicManager);
 		this.classicalAdder = new ClassicalAdder(this, this.musicManager);
 		this.romanticAdder = new RomanticAdder(this, this.musicManager);
+		
 		this.repertoireDeleter = new RepertoireDeleter(this, this.musicManager);
 		this.repertoireViewer = new RepertoireViewer(this, this.musicManager);
 		this.setSize(500, 300);

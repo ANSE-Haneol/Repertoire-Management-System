@@ -19,10 +19,6 @@ public class ButtonDeleteListener implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		MusicManager mm = getObject("MusicManager.ser");
-		RepertoireDeleter repertoireDeleter = frame.getRepertoireDeleter();
-		repertoireDeleter.setMusicManager(mm);
-		
 		frame.getContentPane().removeAll();
 		frame.getContentPane().add(frame.getRepertoireDeleter());
 		frame.revalidate();

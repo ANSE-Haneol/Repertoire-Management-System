@@ -3,6 +3,10 @@ package gui;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 import ClassProject.MusicManager;
 
@@ -23,6 +27,7 @@ public class RepertoireViewer extends JPanel {
 	
 	public RepertoireViewer refresh()
 	{	
+		this.removeAll();
 		JPanel panel = new JPanel();
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("Composer");

@@ -18,14 +18,14 @@ public class ButtonViewListener implements ActionListener {
 		this.frame = frame;
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		MusicManager mm = getObject("MusicManager.ser");
+	public void actionPerformed(ActionEvent e) 
+	{	
 		RepertoireViewer repertoireViewer = frame.getRepertoireViewer();
+		MusicManager mm = getObject("MusicManager.ser");
 		repertoireViewer.setMusicManager(mm);
-		repertoireViewer = repertoireViewer.refresh();
 		
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(repertoireViewer);
+		frame.getContentPane().add(frame.getRepertoireViewer().refresh());
 		frame.revalidate();
 		frame.repaint();
 	}
@@ -52,4 +52,5 @@ public class ButtonViewListener implements ActionListener {
 		
 		return musicManager;
 	}
+	
 }

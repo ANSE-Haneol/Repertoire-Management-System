@@ -1,7 +1,6 @@
 package ClassProject;
 
 import java.io.*;
-import java.util.*;
 import java.util.logging.*;
 
 public class EventLogger {

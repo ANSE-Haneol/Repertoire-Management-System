@@ -5,20 +5,28 @@ import javax.swing.*;
 import ClassProject.MusicManager;
 
 public class WindowFrame extends JFrame {
-	MusicManager musicmanager;
-	MenuSelection menuselection;
-	RepertoireAdder repertoireadder;
-	RepertoireViewer repertoireviewer;
+	MusicManager musicManager;
+	MenuSelection menuSelection;
+	EraSelector eraSelector;
+	BaroqueAdder baroqueAdder;
+	ClassicalAdder classicalAdder;
+	RomanticAdder romanticAdder;
+	RepertoireDeleter repertoireDeleter;
+	RepertoireViewer repertoireViewer;
 	
-	public WindowFrame(MusicManager musicmanager) {
-		this.musicmanager = musicmanager;
-		this.menuselection = new MenuSelection(this);
-		this.repertoireadder = new RepertoireAdder(this);
-		this.repertoireviewer = new RepertoireViewer(this, this.musicmanager);
+	public WindowFrame(MusicManager musicManager) {
+		this.musicManager = musicManager;
+		this.menuSelection = new MenuSelection(this);
+		this.eraSelector = new EraSelector(this, this.musicManager);
+		this.baroqueAdder = new BaroqueAdder(this, this.musicManager);
+		this.classicalAdder = new ClassicalAdder(this, this.musicManager);
+		this.romanticAdder = new RomanticAdder(this, this.musicManager);
+		this.repertoireDeleter = new RepertoireDeleter(this, this.musicManager);
+		this.repertoireViewer = new RepertoireViewer(this, this.musicManager);
 		this.setSize(500, 300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		this.setupPanel(menuselection);
+		this.setupPanel(menuSelection);
 		
 		this.setVisible(true);
 	}
@@ -30,28 +38,59 @@ public class WindowFrame extends JFrame {
 		this.repaint();
 	}
 	
-	public MenuSelection getMenuselection() {
-		return menuselection;
+	public MenuSelection getMenuSelection() {
+		return menuSelection;
 	}
 
-	public void setMenuselection(MenuSelection menuselection) {
-		this.menuselection = menuselection;
+	public void setMenuSelection(MenuSelection menuSelection) {
+		this.menuSelection = menuSelection;
+	}
+	
+	public EraSelector getEraSelector() {
+		return eraSelector;
 	}
 
-	public RepertoireAdder getRepertoireadder() {
-		return repertoireadder;
+	public void setEraSelector(EraSelector eraSelector) {
+		this.eraSelector = eraSelector;
+	}
+	
+	public BaroqueAdder getBaroqueAdder() {
+		return baroqueAdder;
 	}
 
-	public void setRepertoireadder(RepertoireAdder repertoireadder) {
-		this.repertoireadder = repertoireadder;
+	public void setBaroqueAdder(BaroqueAdder baroqueAdder) {
+		this.baroqueAdder = baroqueAdder;
+	}
+	
+	public ClassicalAdder getClassicalAdder() {
+		return classicalAdder;
 	}
 
-	public RepertoireViewer getRepertoireviewer() {
-		return repertoireviewer;
+	public void setClassicalAdder(ClassicalAdder classicalAdder) {
+		this.classicalAdder = classicalAdder;
+	}
+	
+	public RomanticAdder getRomanticAdder() {
+		return romanticAdder;
 	}
 
-	public void setRepertoireviewer(RepertoireViewer repertoireviewer) {
-		this.repertoireviewer = repertoireviewer;
+	public void setRomanticAdder(RomanticAdder romanticAdder) {
+		this.romanticAdder = romanticAdder;
 	}
 
+	public RepertoireViewer getRepertoireViewer() {
+		return repertoireViewer;
+	}
+
+	public void setRepertoireViewer(RepertoireViewer repertoireViewer) {
+		this.repertoireViewer = repertoireViewer;
+	}
+	
+	public RepertoireDeleter getRepertoireDeleter() {
+		return repertoireDeleter;
+	}
+
+	public void setRepertoireDeleter(RepertoireDeleter repertoireDeleter) {
+		this.repertoireDeleter = repertoireDeleter;
+	}
 }

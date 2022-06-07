@@ -33,15 +33,15 @@ public class MusicManager implements Serializable {
 			Music m;
 			if(era == 1) {
 				m = new BaroqueRepertoire();
-				m.setInfo(in); musicList.add(m);
+//				m.setInfo(in); musicList.add(m);
 			}
 			else if(era == 2) {
 				m = new ClassicalRepertoire();
-				m.setInfo(in); musicList.add(m);
+//				m.setInfo(in); musicList.add(m);
 			}
 			else if(era == 3) {
 				m = new RomanticRepertoire();
-				m.setInfo(in); musicList.add(m);
+//				m.setInfo(in); musicList.add(m);
 			}
 			
 			System.out.println();
@@ -82,6 +82,11 @@ public class MusicManager implements Serializable {
 		}
 	}
 	
+	public void addMusic(Music m)
+	{
+		this.musicList.add(m);
+	}
+	
 	public void printMusic()
 	{
 		for(int i = 0; i < musicList.size(); i++) {
@@ -98,13 +103,28 @@ public class MusicManager implements Serializable {
 	{
 		return musicList.get(idx);
 	}
+	
+	public ArrayList<Music> getList()
+	{
+		return this.musicList;
+	}
+	
+	public void setList(ArrayList<Music> musicList)
+	{
+		this.musicList = musicList;
+	}
+	
+	public void sortList()
+	{
+		this.musicList.sort(mComp);
+	}
 }
 
 class Mcomparator implements Comparator<Music>, Serializable {
 	private static final long serialVersionUID = -6984642319340808896L;
 
 	public int compare(Music m1, Music m2) {
-		if(m1.getComposer().contains(m2.getComposer())) {
+		if(m1.getComposer().compareTo(m2.getComposer()) < 0) {
 			if(m1.getOrder() < m2.getOrder()) {
 				return -1;
 			}
@@ -112,7 +132,7 @@ class Mcomparator implements Comparator<Music>, Serializable {
 				return 1;
 			}
 		}
-		else if(m1.getComposer().contains(m2.getComposer())){
+		else if(m1.getComposer().compareTo(m2.getComposer()) > 0){
 			if(m1.getOrder() > m2.getOrder()) {
 				return 1;
 			}

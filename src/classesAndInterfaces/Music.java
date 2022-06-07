@@ -1,7 +1,5 @@
 package classesAndInterfaces;
 
-import java.util.*;
-import java.text.SimpleDateFormat;
 import java.io.*;
 
 public abstract class Music implements Serializable {
@@ -53,14 +51,11 @@ public abstract class Music implements Serializable {
 		return this.genre;
 	}
 	
-	public void setInfo(Scanner in)
+	public void setInfo(String composer, String title, String genre)
 	{
-		System.out.print("Enter the composer: "); //값들을 입력받고
-		setComposer(in.nextLine());
-		System.out.print("Enter the title: ");
-		setTitle(in.nextLine());
-		System.out.print("Enter the genre: ");
-		setGenre(in.nextLine());
+		this.setComposer(composer);
+		this.setTitle(title);
+		this.setGenre(genre);
 	}
 	
 	public abstract int getOrder();

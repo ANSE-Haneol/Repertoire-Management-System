@@ -2,11 +2,16 @@ package gui;
 	
 import javax.swing.*;
 
-public class RepertoireAdder extends JPanel {
+import ClassProject.MusicManager;
+import listener.ReturnListener;
+import listener.BaroqueAdderListener;
+
+public class BaroqueAdder extends JPanel {
 	
+	MusicManager musicManager;
 	WindowFrame frame;
 	
-	public RepertoireAdder(WindowFrame frame) {
+	public BaroqueAdder(WindowFrame frame, MusicManager musicManager) {
 		this.frame = frame;
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
@@ -29,8 +34,13 @@ public class RepertoireAdder extends JPanel {
 		panel.add(labelGenre);
 		panel.add(fieldGenre);
 		
-		panel.add(new JButton("Save"));
-		panel.add(new JButton("Cancel"));
+		JButton saveButton = new JButton("save");
+		saveButton.addActionListener(new BaroqueAdderListener(fieldComposer, fieldTitle, fieldGenre, musicManager, frame));
+		JButton cancelButton = new JButton("cancel");
+		cancelButton.addActionListener(new ReturnListener(frame));
+		
+		panel.add(saveButton);
+		panel.add(cancelButton);
 		
 		SpringUtilities.makeCompactGrid(panel, 4, 2, 6, 6, 6, 6);
 		

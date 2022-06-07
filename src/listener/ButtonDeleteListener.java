@@ -8,24 +8,23 @@ import java.io.ObjectInputStream;
 
 import ClassProject.MusicManager;
 import gui.WindowFrame;
-import gui.RepertoireViewer;
+import gui.RepertoireDeleter;
 
-public class ButtonViewListener implements ActionListener {
+public class ButtonDeleteListener implements ActionListener {
 	
 	WindowFrame frame;
 	
-	public ButtonViewListener(WindowFrame frame) {
+	public ButtonDeleteListener(WindowFrame frame) {
 		this.frame = frame;
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		MusicManager mm = getObject("MusicManager.ser");
-		RepertoireViewer repertoireViewer = frame.getRepertoireViewer();
-		repertoireViewer.setMusicManager(mm);
-		repertoireViewer = repertoireViewer.refresh();
+		RepertoireDeleter repertoireDeleter = frame.getRepertoireDeleter();
+		repertoireDeleter.setMusicManager(mm);
 		
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(repertoireViewer);
+		frame.getContentPane().add(frame.getRepertoireDeleter());
 		frame.revalidate();
 		frame.repaint();
 	}

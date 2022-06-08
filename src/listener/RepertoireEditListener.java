@@ -35,6 +35,7 @@ public class RepertoireEditListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		int delIdx = Integer.parseInt(fieldIdx.getText());
 		Music m = musicManager.getMusic(delIdx);
+		musicManager.getList().remove(delIdx);
 		m.setComposer(fieldComposer.getText());
 		m.setTitle(fieldTitle.getText());
 		m.setGenre(fieldGenre.getText());

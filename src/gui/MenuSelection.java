@@ -3,6 +3,7 @@ package gui;
 import javax.swing.*;
 
 import listener.ButtonDeleteListener;
+import listener.ButtonEditListener;
 import listener.ButtonViewListener;
 import listener.EraSelectionListener;
 import listener.ExitListener;
@@ -27,7 +28,7 @@ public class MenuSelection extends JPanel {
 		
 		button1.addActionListener(new EraSelectionListener(frame));
 		button2.addActionListener(new ButtonDeleteListener(frame));
-//		button3.addActionListener(new ButtonEditListener(frame));
+		button3.addActionListener(new ButtonEditListener(frame));
 		button4.addActionListener(new ButtonViewListener(frame));
 		button5.addActionListener(new ExitListener(frame));
 		

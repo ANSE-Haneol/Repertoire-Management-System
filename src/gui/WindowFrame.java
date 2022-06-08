@@ -7,10 +7,13 @@ import ClassProject.MusicManager;
 public class WindowFrame extends JFrame {
 	MusicManager musicManager;
 	MenuSelection menuSelection;
+	
 	EraSelector eraSelector;
 	BaroqueAdder baroqueAdder;
 	ClassicalAdder classicalAdder;
 	RomanticAdder romanticAdder;
+	
+	RepertoireEditor repertoireEditor;
 	RepertoireDeleter repertoireDeleter;
 	RepertoireViewer repertoireViewer;
 	
@@ -23,6 +26,7 @@ public class WindowFrame extends JFrame {
 		this.classicalAdder = new ClassicalAdder(this, this.musicManager);
 		this.romanticAdder = new RomanticAdder(this, this.musicManager);
 		
+		this.repertoireEditor = new RepertoireEditor(this, this.musicManager);
 		this.repertoireDeleter = new RepertoireDeleter(this, this.musicManager);
 		this.repertoireViewer = new RepertoireViewer(this, this.musicManager);
 		this.setSize(500, 300);
@@ -79,6 +83,15 @@ public class WindowFrame extends JFrame {
 	public void setRomanticAdder(RomanticAdder romanticAdder) {
 		this.romanticAdder = romanticAdder;
 	}
+	
+	public RepertoireEditor getRepertoireEditor() {
+		return repertoireEditor;
+	}
+
+	public void setRepertoireEditor(RepertoireEditor repertoireEditor) {
+		this.repertoireEditor = repertoireEditor;
+	}
+
 
 	public RepertoireViewer getRepertoireViewer() {
 		return repertoireViewer;

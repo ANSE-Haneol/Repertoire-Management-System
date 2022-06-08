@@ -25,7 +25,7 @@ public class ButtonViewListener implements ActionListener {
 		repertoireViewer.setMusicManager(mm);
 		
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(frame.getRepertoireViewer().refresh());
+		frame.getContentPane().add(repertoireViewer.refresh());
 		frame.revalidate();
 		frame.repaint();
 	}

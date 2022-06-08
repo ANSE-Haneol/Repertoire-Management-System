@@ -2,6 +2,7 @@ package listener;
 
 import java.awt.event.*;
 
+import ClassProject.MusicManager;
 import gui.WindowFrame;
 
 public class ButtonEditListener implements ActionListener {
@@ -14,7 +15,7 @@ public class ButtonEditListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(frame.getMenuSelection());
+		frame.getContentPane().add(frame.getRepertoireEditor());
 		frame.revalidate();
 		frame.repaint();
 	}
